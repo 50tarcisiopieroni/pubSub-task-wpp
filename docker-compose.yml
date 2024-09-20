@@ -5,8 +5,8 @@ services:
     image: rabbitmq:3.13-management
     container_name: Coelho
     environment:
-      - RABBITMQ_DEFAULT_USER="coelho"
-      - RABBITMQ_DEFAULT_PASS="E73k@xG4Lx9%y!"
+      - RABBITMQ_DEFAULT_USER=coelho
+      - RABBITMQ_DEFAULT_PASS=E73k@xG4Lx9%y!
     ports:
       - 5672:5672
       - 15672:15672
