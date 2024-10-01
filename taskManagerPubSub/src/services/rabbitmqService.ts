@@ -44,7 +44,7 @@ export default class RabbitmqService {
     }
   }
 
-  async publishMessage(queue, tarefa: ITarefa) {
+  async publishMessage(queue: string, tarefa: ITarefa) {
     try {
       const connection = await connect(process.env.AMQP_SERVER);
       const channel = await connection.createChannel();
