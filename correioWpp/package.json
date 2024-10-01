@@ -1,0 +1,23 @@
+{
+  "name": "correiowpp",
+  "version": "1.0.0",
+  "description": "Um serviço que utiliza a API do CallMeBot para enviar mensagens pelo wpp",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tarcisio Pieroni",
+  "license": "ISC",
+  "dependencies": {
+    "@types/amqplib": "^0.10.5",
+    "@types/node": "^22.5.5",
+    "amqplib": "^0.10.4",
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.5",
+    "dotenvs": "^1.0.5",
+    "express": "^4.21.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
+  }
+}
