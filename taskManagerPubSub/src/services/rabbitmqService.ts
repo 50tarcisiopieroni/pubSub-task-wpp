@@ -1,4 +1,5 @@
 import { Channel, connect, Connection } from "amqplib";
+import TarefaController from '../controller/tarefaController'
 import { config } from "dotenv";
 import { ITarefa } from "models/tarefaModel";
 
@@ -6,10 +7,12 @@ import { ITarefa } from "models/tarefaModel";
 export default class RabbitmqService {
   connection: Connection;
   channel: Channel;
+  tarefaController: TarefaController;
 
   constructor() {
     this.connection = null;
     this.channel = null;
+    this.tarefaController = new TarefaController();
   }
 
   async init() {
@@ -32,10 +35,12 @@ export default class RabbitmqService {
 
       console.log(`Aguardando mensagens na fila: ${queue}`);
 
-      this.channel.consume(queue, (msg) => {
+      this.channel.consume(queue, async (msg) => {
         if (msg !== null) {
-          const messageContent: ITarefa = JSON.parse(msg.content.toString());
-          console.log(`Mensagem recebida: ${messageContent.titulo}`);
+          const tarefaNova: ITarefa = JSON.parse(msg.content.toString());
+          const tarefaCriada: ITarefa = await this.tarefaController.save(tarefaNova)
+
+          console.log(`Tarefa cadastrada: ${tarefaCriada.titulo}`);
           this.channel.ack(msg);
         }
       });
