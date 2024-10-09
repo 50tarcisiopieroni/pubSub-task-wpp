@@ -14,4 +14,16 @@ export default class TarefaController {
         .exec()
         return allTarefa;
     }
+
+    async concluiTarefa(idTarefa : string) : Promise<ITarefa> {
+        const tarefaConcluida = await TarefaModel.findOneAndUpdate(
+            { _id: idTarefa, concluida: false }, 
+            { concluida: true },
+            { new: true }
+            )
+            .populate('usuario')
+            .exec();
+        
+        return tarefaConcluida;
+    }
 }
