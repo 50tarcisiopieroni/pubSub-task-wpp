@@ -21,7 +21,6 @@ function getMensageUrl(tarefa: ITarefa) {
 
     const parametros = `phone=${phone}&text=${text}&apikey=${tarefa.usuario.apiKey}`;
 
-    console.log(encodeURI(process.env.CALLMEBOT_URL + parametros))
     return encodeURI(process.env.CALLMEBOT_URL + parametros)
 }
 
